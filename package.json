@@ -1,0 +1,37 @@
+{
+  "name": "open-bell",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "dev:l": "nuxt dev",
+    "start": "node .output/server/index.mjs",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "prisma generate",
+    "db:deploy": "prisma migrate deploy",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@iconify/vue": "^5.0.0",
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "bcryptjs": "^3.0.3",
+    "nuxt": "^4.2.2",
+    "pg": "^8.17.1",
+    "vue": "^3.5.26",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/node": "^25.0.9",
+    "@types/pg": "^8.16.0",
+    "daisyui": "^5.5.14",
+    "prisma": "^7.2.0",
+    "tailwindcss": "^4.1.18",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.17"
+  }
+}
