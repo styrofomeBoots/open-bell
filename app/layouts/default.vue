@@ -43,7 +43,7 @@ const logout = async (): Promise<void> => {
     </nav>
 
     <!-- Page content -->
-    <div class="p-20">
+    <div class="py-10">
       <slot />
     </div>
   </div>

@@ -47,7 +47,9 @@ const submit = async (): Promise<void> => {
   <BaseCard>
     <div class="flex items-start justify-between gap-6">
       <div class="space-y-2">
-        <h1 class="text-3xl font-bold tracking-tight">Welcome back</h1>
+        <h1 class="text-2xl font-bold tracking-tight sm:text-3xl">
+          Welcome back
+        </h1>
         <p class="text-base-content/70">
           Log in to search opening prices in OpenBell.
         </p>
