@@ -12,21 +12,32 @@ export default defineEventHandler(async (event) => {
   const password: string = body.password ?? "";
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    throw createError({ statusCode: 400, statusMessage: "Invalid email address." });
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Invalid email address.",
+    });
   }
 
   if (password.length < 8) {
-    throw createError({ statusCode: 400, statusMessage: "Password must be at least 8 characters." });
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Password must be at least 8 characters.",
+    });
   }
 
-
   if (!email || !password) {
-    throw createError({ statusCode: 400, statusMessage: "Email and password required." });
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Email and password required.",
+    });
   }
 
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) {
-    throw createError({ statusCode: 409, statusMessage: "Email already exists." });
+    throw createError({
+      statusCode: 409,
+      statusMessage: "Email already exists.",
+    });
   }
 
   const passwordHash: string = await bcrypt.hash(password, 10);

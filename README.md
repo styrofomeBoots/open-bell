@@ -4,9 +4,9 @@
 
 Open Bell is a full-stack web application to check the opening price of stocks. It supports:
 
-* User signup, login, and logout
-* A protected stock lookup form (available only to authenticated users)
-* Fetching and displaying the **opening price** for a given stock symbol via an external API
+- User signup, login, and logout
+- A protected stock lookup form (available only to authenticated users)
+- Fetching and displaying the **opening price** for a given stock symbol via an external API
 
 **Live demo:** [openbell.xyz](https://openbell.xyz)
 
@@ -14,32 +14,32 @@ Open Bell is a full-stack web application to check the opening price of stocks. 
 
 ## Screenshots
 
-| View | Screenshot |
-|------|------------|
-| Signup | <img src="./screenshots/signup.png" width="600" /> |
-| Login | <img src="./screenshots/login.png" width="600" /> |
-| Open Price | <img src="./screenshots/index.png" width="600" /> |
+| View       | Screenshot                                         |
+| ---------- | -------------------------------------------------- |
+| Signup     | <img src="./screenshots/signup.png" width="600" /> |
+| Login      | <img src="./screenshots/login.png" width="600" />  |
+| Open Price | <img src="./screenshots/index.png" width="600" />  |
 
 ---
 
 ## Tech Stack
 
-* **Framework:** Nuxt 4 (Vue 3)
-* **Database:** PostgreSQL (via Prisma)
-* **ORM:** Prisma
-* **Auth:** Username/password with hashed passwords (bcryptjs)
-* **UI:** Tailwind CSS + daisyUI + Iconify
-* **Testing:** Vitest
+- **Framework:** Nuxt 4 (Vue 3)
+- **Database:** PostgreSQL (via Prisma)
+- **ORM:** Prisma
+- **Auth:** Username/password with hashed passwords (bcryptjs)
+- **UI:** Tailwind CSS + daisyUI + Iconify
+- **Testing:** Vitest
 
 ---
 
 ## Concepts Demonstrated
 
-* Build and deploy a complete web app
-* User authentication with protected functionality
-* Database persistence (users stored in Postgres)
-* External API integration (stock symbol → opening price)
-* Automated tests (happy path)
+- Build and deploy a complete web app
+- User authentication with protected functionality
+- Database persistence (users stored in Postgres)
+- External API integration (stock symbol → opening price)
+- Automated tests (happy path)
 
 ---
 
@@ -47,9 +47,9 @@ Open Bell is a full-stack web application to check the opening price of stocks. 
 
 ### Prerequisites
 
-* Node.js
-* pnpm (recommended) or npm
-* PostgreSQL 16+
+- Node.js
+- pnpm (recommended) or npm
+- PostgreSQL 16+
 
 ### 1) Install dependencies
 
@@ -73,8 +73,8 @@ cp .env.example .env
 
 At minimum, set the variables documented in `.env.example`, including:
 
-* `DATABASE_URL`
-* `FINNHUB_API_KEY` (or whatever stock API key is used)
+- `DATABASE_URL`
+- `FINNHUB_API_KEY` (or whatever stock API key is used)
 
 Example `DATABASE_URL`:
 
@@ -124,7 +124,7 @@ npm run dev
 
 App will be available at:
 
-* [http://localhost:3000](http://localhost:3000)
+- [http://localhost:3000](http://localhost:3000)
 
 ### (Optional) Prisma Studio
 
@@ -202,6 +202,6 @@ Ensure your Postgres role exists and matches your OS username (commonly `whoami`
 
 ## Notes / Design Decisions
 
-* The stock lookup feature is protected and only accessible to authenticated users.
-* API calls are made server-side to avoid exposing API keys to the client.
-* UI is styled with Tailwind + daisyUI for a clean, usable interface.
+- The stock lookup feature is protected and only accessible to authenticated users.
+- API calls are made server-side to avoid exposing API keys to the client.
+- UI is styled with Tailwind + daisyUI for a clean, usable interface.

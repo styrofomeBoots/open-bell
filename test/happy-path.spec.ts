@@ -27,7 +27,6 @@ vi.mock("../server/utils/prisma", () => ({
   },
 }));
 
-
 // Mock session utils
 vi.mock("../server/utils/session", async () => {
   const real = await vi.importActual<any>("../server/utils/session");
@@ -63,7 +62,10 @@ describe("Happy path", () => {
   });
 
   it("signs up", async () => {
-    const event = mockEvent({ email: "test@example.com", password: "password123" });
+    const event = mockEvent({
+      email: "test@example.com",
+      password: "password123",
+    });
     const res = await signup(event);
     expect(res.ok).toBe(true);
   });
@@ -75,7 +77,10 @@ describe("Happy path", () => {
       passwordHash: "hashed",
     });
 
-    const event = mockEvent({ email: "test@example.com", password: "password123" });
+    const event = mockEvent({
+      email: "test@example.com",
+      password: "password123",
+    });
     const res = await login(event);
     expect(res.ok).toBe(true);
   });

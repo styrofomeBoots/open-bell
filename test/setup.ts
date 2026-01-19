@@ -7,7 +7,9 @@ import { vi } from "vitest";
 });
 
 // Default $fetch stub (quote handler calls $fetch to Finnhub)
-(globalThis as any).$fetch = vi.fn().mockResolvedValue({ o: 123.45, t: 1700000000 });
+(globalThis as any).$fetch = vi
+  .fn()
+  .mockResolvedValue({ o: 123.45, t: 1700000000 });
 
 // Mock h3 helpers that otherwise expect a real Node req/res
 vi.mock("h3", async (importOriginal) => {

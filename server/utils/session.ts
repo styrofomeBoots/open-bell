@@ -7,7 +7,10 @@ const SESSION_DAYS: number = 7;
 
 export type AuthUser = { id: string; email: string };
 
-export async function createSession(event: H3Event, userId: string): Promise<void> {
+export async function createSession(
+  event: H3Event,
+  userId: string,
+): Promise<void> {
   const expiresAt = new Date(Date.now() + SESSION_DAYS * 24 * 60 * 60 * 1000);
   const sessionId = randomUUID();
 
@@ -22,7 +25,9 @@ export async function createSession(event: H3Event, userId: string): Promise<voi
   });
 }
 
-export async function getUserFromSession(event: H3Event): Promise<AuthUser | null> {
+export async function getUserFromSession(
+  event: H3Event,
+): Promise<AuthUser | null> {
   const sessionId = getCookie(event, COOKIE_NAME);
   if (!sessionId) return null;
 
@@ -34,7 +39,9 @@ export async function getUserFromSession(event: H3Event): Promise<AuthUser | nul
   if (!session) return null;
 
   if (session.expiresAt.getTime() < Date.now()) {
-    await prisma.session.delete({ where: { id: sessionId } }).catch(() => undefined);
+    await prisma.session
+      .delete({ where: { id: sessionId } })
+      .catch(() => undefined);
     return null;
   }
 
@@ -44,7 +51,9 @@ export async function getUserFromSession(event: H3Event): Promise<AuthUser | nul
 export async function destroySession(event: H3Event): Promise<void> {
   const sessionId = getCookie(event, COOKIE_NAME);
   if (sessionId) {
-    await prisma.session.delete({ where: { id: sessionId } }).catch(() => undefined);
+    await prisma.session
+      .delete({ where: { id: sessionId } })
+      .catch(() => undefined);
   }
   deleteCookie(event, COOKIE_NAME, { path: "/" });
 }

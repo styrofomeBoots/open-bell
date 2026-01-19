@@ -47,16 +47,24 @@ const marketStatus = computed<MarketStatus>(() => {
 });
 
 const tooltipClass = computed<string>(() =>
-  marketStatus.value.isOpen ? "tooltip-success" : "tooltip-error"
+  marketStatus.value.isOpen ? "tooltip-success" : "tooltip-error",
 );
 
 const iconClass = computed<string>(() =>
-  marketStatus.value.isOpen ? "text-success" : "text-error"
+  marketStatus.value.isOpen ? "text-success" : "text-error",
 );
 </script>
 
 <template>
-  <div class="tooltip inline-flex tooltip-left" :class="tooltipClass" :data-tip="marketStatus.tooltip">
-    <Icon :icon="marketStatus.icon" class="size-12 align-top mt-[-.5rem]" :class="iconClass" />
+  <div
+    class="tooltip inline-flex tooltip-left"
+    :class="tooltipClass"
+    :data-tip="marketStatus.tooltip"
+  >
+    <Icon
+      :icon="marketStatus.icon"
+      class="size-12 align-top mt-[-.5rem]"
+      :class="iconClass"
+    />
   </div>
 </template>

@@ -5,11 +5,13 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   const publicPaths = new Set<string>(["/login", "/signup"]);
 
-  const headers = import.meta.server ? useRequestHeaders(["cookie"]) : undefined;
+  const headers = import.meta.server
+    ? useRequestHeaders(["cookie"])
+    : undefined;
 
   const me = await $fetch<{ user: { id: string; email: string } | null }>(
     `/api/auth/me?_=${Date.now()}`,
-    { headers }
+    { headers },
   );
 
   const isAuthed = Boolean(me.user);

@@ -19,20 +19,31 @@ const logout = async (): Promise<void> => {
         <span class="font-semibold hidden sm:inline">OpenBell</span>
       </NuxtLink>
       <div class="flex items-center gap-2">
-        <button v-if="showLogout" class="btn btn-ghost btn-sm" type="button" @click="logout">
+        <button
+          v-if="showLogout"
+          class="btn btn-ghost btn-sm"
+          type="button"
+          @click="logout"
+        >
           <Icon icon="heroicons:arrow-right-on-rectangle" class="size-5" />
           <span class="hidden sm:inline">Logout</span>
         </button>
         <ThemeController />
-        <a class="btn btn-ghost btn-sm" href="https://github.com/styrofomeBoots/open-bell" target="_blank"
-          rel="noopener noreferrer" aria-label="OpenBell GitHub repository" title="View source on GitHub">
+        <a
+          class="btn btn-ghost btn-sm"
+          href="https://github.com/styrofomeBoots/open-bell"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="OpenBell GitHub repository"
+          title="View source on GitHub"
+        >
           <Icon icon="mdi:github" class="size-5" />
         </a>
       </div>
     </nav>
 
     <!-- Page content -->
-    <div class="p-4">
+    <div class="p-20">
       <slot />
     </div>
   </div>
