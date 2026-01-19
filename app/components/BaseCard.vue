@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto max-w-2xl min-w-sm">
+  <div class="mx-auto max-w-lg min-w-sm">
     <section
       class="relative overflow-hidden rounded-2xl border bg-base-100/80 shadow-sm backdrop-blur"
     >

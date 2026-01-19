@@ -8,7 +8,7 @@ Open Bell is a full-stack web application to check the opening price of stocks. 
 - A protected stock lookup form (available only to authenticated users)
 - Fetching and displaying the **opening price** for a given stock symbol via an external API
 
-**Live demo:** [openbell.xyz](https://openbell.xyz)
+**Live demo (deployed on Render):** [openbell.xyz](https://openbell.xyz)
 
 ---
 

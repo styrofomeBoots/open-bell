@@ -14,7 +14,6 @@ const form = reactive<SignupForm>({
 });
 
 const showPassword = ref<boolean>(false);
-const showConfirm = ref<boolean>(false);
 const isSubmitting = ref<boolean>(false);
 const errorMsg = ref<string>("");
 
