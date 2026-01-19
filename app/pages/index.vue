@@ -15,14 +15,14 @@ const errorMsg = ref<string>("");
 const quoteDateLabel = computed<string>(() => {
   const ts = quote.value?.ts;
   if (!ts) return "";
+
   const d = new Date(ts * 1000);
 
   return d.toLocaleDateString("en-US", {
     timeZone: "America/New_York",
     weekday: "short",
-    month: "2-digit",
-    day: "2-digit",
-    year: "numeric",
+    month: "short",
+    day: "numeric",
   });
 });
 

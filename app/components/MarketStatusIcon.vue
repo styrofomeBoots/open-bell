@@ -1,49 +1,56 @@
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
 
-type Props = {
-  timeZone?: string;
-};
-
-const props = withDefaults(defineProps<Props>(), {
-  timeZone: "America/New_York",
-});
-
 type MarketStatus = {
   isOpen: boolean;
   icon: string;
   tooltip: string;
 };
 
+type MarketStatusResponse = {
+  exchange: string;
+  isOpen: boolean;
+  holiday: string | null;
+  timestamp: number | null;
+};
+
+const { data, pending, error, refresh } = await useFetch<MarketStatusResponse>(
+  "/api/stocks/status",
+  { query: { exchange: "US" } },
+);
+
+onMounted((): void => {
+  const id = globalThis.setInterval(() => {
+    void refresh();
+  }, 60_000);
+  onBeforeUnmount(() => globalThis.clearInterval(id));
+});
+
+const shouldShow = computed<boolean>(
+  () => Boolean(data.value) && !error.value && !pending.value,
+);
+
 const marketStatus = computed<MarketStatus>(() => {
-  const now = new Date();
+  const isOpen = data.value?.isOpen ?? false;
+  const holiday = data.value?.holiday ?? null;
 
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: props.timeZone,
-    weekday: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).formatToParts(now);
+  if (isOpen) {
+    return { isOpen: true, icon: "cbi:neon-open", tooltip: "Market is open" };
+  }
 
-  const weekday = parts.find((p) => p.type === "weekday")?.value ?? "";
-  const hourStr = parts.find((p) => p.type === "hour")?.value ?? "00";
-  const minuteStr = parts.find((p) => p.type === "minute")?.value ?? "00";
+  if (holiday) {
+    return {
+      isOpen: false,
+      icon: "cbi:neon-closed",
+      tooltip: `Market is closed`,
+    };
+  }
 
-  const hour = Number(hourStr);
-  const minute = Number(minuteStr);
-
-  const isWeekday = ["Mon", "Tue", "Wed", "Thu", "Fri"].includes(weekday);
-
-  const mins = hour * 60 + minute;
-  const openMins = 9 * 60 + 30;
-  const closeMins = 16 * 60;
-
-  const isOpen = isWeekday && mins >= openMins && mins < closeMins;
-
-  return isOpen
-    ? { isOpen: true, icon: "cbi:neon-open", tooltip: "Market is open" }
-    : { isOpen: false, icon: "cbi:neon-closed", tooltip: "Market is closed" };
+  return {
+    isOpen: false,
+    icon: "cbi:neon-closed",
+    tooltip: "Market is closed",
+  };
 });
 
 const tooltipClass = computed<string>(() =>
@@ -57,13 +64,14 @@ const iconClass = computed<string>(() =>
 
 <template>
   <div
+    v-if="shouldShow"
     class="tooltip inline-flex tooltip-left"
     :class="tooltipClass"
     :data-tip="marketStatus.tooltip"
   >
     <Icon
       :icon="marketStatus.icon"
-      class="size-12 align-top mt-[-.5rem]"
+      class="size-12 align-top mt-[-.25rem]"
       :class="iconClass"
     />
   </div>
