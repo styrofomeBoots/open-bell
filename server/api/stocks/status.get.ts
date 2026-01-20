@@ -1,7 +1,7 @@
 type FinnhubMarketStatus = {
   exchange: string;
   holiday: string | null;
-  is_open: boolean;
+  isOpen: boolean;
   session: string | null;
   state: string | null;
   timezone: string;
@@ -12,7 +12,6 @@ type MarketStatusResponse = {
   exchange: string;
   isOpen: boolean;
   holiday: string | null;
-  timestamp: number | null;
 };
 
 export default defineEventHandler(
@@ -33,9 +32,8 @@ export default defineEventHandler(
 
     return {
       exchange: res.exchange ?? exchange,
-      isOpen: Boolean(res.is_open),
+      isOpen: Boolean(res.isOpen),
       holiday: res.holiday ?? null,
-      timestamp: typeof res.timestamp === "number" ? res.timestamp : null,
     };
   },
 );
